@@ -15,9 +15,7 @@
      Background="{x:Null}"
      FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MusicPlayer" Height="500" Width="900" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" Visibility="Visible">
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
+   
     <materialDesign:Card VerticalAlignment="Stretch" UniformCornerRadius="15">
         <Grid>
             <Grid.Effect>
@@ -211,7 +209,7 @@
                             <DataTemplate>
                                 <UniformGrid Columns="1">
                                     <UniformGrid.Resources>
-                                        <TextBlock Text="{Binding FileName}"/>
+                                      
                                     </UniformGrid.Resources>
                                 </UniformGrid>
                             </DataTemplate>
