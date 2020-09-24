@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 
 namespace MusicPlayerInterface.ViewModels
@@ -29,17 +30,27 @@ namespace MusicPlayerInterface.ViewModels
             music = new Music();
         }
         #region -METHODS-
-        public async void PlayPause()
+
+        public string getNameMetaData(string fileName)
+        {
+            using (BinaryReader stream = new BinaryReader(File.Open(fileName, FileMode.Open)))
+            {
+                var stringContent = stream.ReadString();
+                return stringContent;
+            }
+        }
+
+        public void PlayPause()
         {
             if (SelectedTrack != String.Empty)
             {
-                if(SelectedTrack != HistoryTrack)
+                if (SelectedTrack != HistoryTrack)
                 {
                     HistoryTrack = SelectedTrack;
                     music.stop();
                     music.open(HistoryTrack);
                     music.play();
-                    
+
                 }
                 else
                 {
@@ -54,7 +65,7 @@ namespace MusicPlayerInterface.ViewModels
                         IsPlaying = true;
                     }
                 }
-                
+
             }
 
         }
