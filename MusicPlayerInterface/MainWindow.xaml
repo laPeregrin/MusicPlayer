@@ -15,7 +15,9 @@
      Background="{x:Null}"
      FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MusicPlayer" Height="500" Width="900" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" Visibility="Visible">
-   
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
     <materialDesign:Card VerticalAlignment="Stretch" UniformCornerRadius="15">
         <Grid>
             <Grid.Effect>
@@ -106,7 +108,7 @@
                         </materialDesign:PackIcon>
                         <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" Grid.Row="0" HorizontalAlignment="Right" Margin="0,-55,0,0" Foreground="White" Cursor="Hand">
                             <StackPanel>
-                                <Button Content="Add to current playlist" Command="{Binding GetMusic}"/>
+                                <Button Content="Add to current playlist" Command="{Binding ImportMusic}"/>
                             </StackPanel>
                         </materialDesign:PopupBox>
                         <Ellipse  Height="130" materialDesign:ShadowAssist.ShadowDepth="Depth4" Width="138" Margin="0,-5,0,0">
@@ -160,7 +162,7 @@
                                 </materialDesign:PackIcon.Foreground>
                             </materialDesign:PackIcon>
                         </Button>
-                        <Button Command="{Binding PlayMusic}" Style="{StaticResource MaterialDesignFlatButton}" Width="78" Margin="1,-35,-10,0" Height="70">
+                        <Button Command="{Binding PlayOrPause}" Style="{StaticResource MaterialDesignFlatButton}" Width="78" Margin="1,-35,-10,0" Height="70">
                             <materialDesign:PackIcon Kind="PlayCircleFilled" Width="50" Height="50" VerticalAlignment="Center" Cursor="Hand">
                                 <materialDesign:PackIcon.Foreground>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -203,14 +205,24 @@
                             </LinearGradientBrush>
                         </TextBlock.Foreground>Current playlist</TextBlock>
                     <TextBlock/>
-                    <ListBox Name="lstBox" HorizontalAlignment="Left"
-                        Visibility="Visible"  ItemsSource="{Binding MusicTracks}" SelectedItem="{Binding MassiveNameFiles}" Height="335" Width="300">
+                    <ListBox Name="lstBox" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                        Visibility="Visible"  ItemsSource="{Binding MusicList}" SelectedItem="{Binding SelectedTrack}" Height="335" Width="300">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <UniformGrid Columns="1">
+                                <UniformGrid Width="300" Columns="4" Cursor="Arrow" >
                                     <UniformGrid.Resources>
-                                      
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="TextAlignment" Value="Center"/>
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                        </Style>
                                     </UniformGrid.Resources>
+                                    <UniformGrid.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF4FFBA5"/>
+                                            <GradientStop Color="#FF590FDA" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </UniformGrid.Background>
+                                    <TextBlock x:Name="q" Text="{Binding }"/>
                                 </UniformGrid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
