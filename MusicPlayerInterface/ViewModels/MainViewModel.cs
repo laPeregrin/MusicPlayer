@@ -14,12 +14,12 @@ namespace MusicPlayerInterface.ViewModels
         Music music;
         #endregion
         #region PROPERTIES
-        private ObservableCollection<string> _MusicList;
+        private ObservableCollection<string> _musicList;
         private string _SelectedTrack = String.Empty;
         private string HistoryTrack = "default";
 
         public string SelectedTrack { get { return _SelectedTrack; } set { _SelectedTrack = value; OnPropertyChanged(); } }
-        public ObservableCollection<string> MusicList { get { return _MusicList; } private set { _MusicList = value; OnPropertyChanged(); } }
+        public ObservableCollection<string> MusicList { get { return _musicList; } private set { _musicList = value; OnPropertyChanged(); } }
 
         private bool _IsPlaying = false;
         public bool IsPlaying { get { return _IsPlaying; } private set { _IsPlaying = value; } }
